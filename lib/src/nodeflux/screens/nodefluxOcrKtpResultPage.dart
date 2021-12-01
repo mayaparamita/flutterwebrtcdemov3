@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../pages/signup.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../Widget/bezierContainer.dart';
 import 'package:intl/intl.dart';
 import 'dart:io';
-import 'package:path/path.dart' as path;
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../call_sample/call_sample.dart';
 import 'package:http/http.dart' as http;
+import 'package:email_validator/email_validator.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -25,9 +23,6 @@ import 'dart:convert';
 import '../../webrtc_room/webrtc_room.dart';
 
 class NodefluxOcrKtpResultPage extends StatefulWidget {
-  //NodefluxOcrKtpResultPage({Key key, this.title}) : super(key: key);
-
-  //final String title;
 
   final NodefluxResult2Model model;
   File _ektpImage;
@@ -47,6 +42,8 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
   // File _selfieImage;
   File _npwpImage;
   File _selfieEktpImage;
+
+  bool isEmail = false;
 
   TextEditingController nikController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -1035,16 +1032,14 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
                     SizedBox(height: 60),
                     _title(),
                     SizedBox(height: 50),
-                    // showUploadEktpButton(),
-                    // (_ektpImage!=null)?Text('eKTP Uploaded',
-                    //     style: new TextStyle(fontSize: 12.0, color: Colors.black)):Container(),
-                    // Add TextFormFields and ElevatedButton here.
                     buildTextFormFieldName(),
                     SizedBox(height: 15),
                     buildTextFormFieldNik(),
                     buildTextFormFieldBirthplace(),
                     SizedBox(height: 15),
                     buildTextFormFieldBirthdate(),
+                    SizedBox(height: 15),
+                    buildTextFormFieldGender(),
                     SizedBox(height: 15),
                     buildTextFormFieldAddress(),
                     SizedBox(height: 15),
@@ -1073,85 +1068,28 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
                     buildTextFormFieldEmail(),
                     SizedBox(height: 15),
                     buildTextFormFieldMobilePhone(),
-
-                    // Row(
-                    //     children: <Widget> [showUploadEktpButton(),
-
-                    //     ]
-                    // ),
-                    // Row(
-                    //     children: <Widget> [
-                    //       (_ektpImage!=null)?Text('eKTP Uploaded',
-                    //           style: new TextStyle(fontSize: 12.0, color: Colors.black)):Container(),
-                    //       (_npwpImage!=null)?Text('NPWP Photo Uploaded',
-                    //           style: new TextStyle(fontSize: 12.0, color: Colors.white)):Container()
-                    //     ]
-                    // ),
-
                     Row (
                         children: <Widget> [
-                          //showUploadNpwpButton(),
                           showUploadSelfieEktpButton(),
-                          //showUploadSelfieButton(),
                         ]
                     ),
-
                   ],
                 )
 
 
             ),
             SizedBox(height: 15),
+            (_selfieEktpImage != null) ?
             Row (
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                //           InkWell(
-                //           onTap: () {
-                // createData;
-                // },
-                //     child:Container(
-                //       width: MediaQuery.of(context).size.width,
-                //       padding: EdgeInsets.symmetric(vertical: 15),
-                //       alignment: Alignment.center,
-                //       decoration: BoxDecoration(
-                //           borderRadius: BorderRadius.all(Radius.circular(5)),
-                //           boxShadow: <BoxShadow>[
-                //             BoxShadow(
-                //                 color: Colors.grey.shade200,
-                //                 offset: Offset(2, 4),
-                //                 blurRadius: 5,
-                //                 spreadRadius: 2)
-                //           ],
-                //           gradient: LinearGradient(
-                //               begin: Alignment.centerLeft,
-                //               end: Alignment.centerRight,
-                //               colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-                //       child: Text(
-                //         'Ok Saya Siap Melakukan Video Call',
-                //         style: TextStyle(fontSize: 20, color: Colors.white),
-                //       ),
-                //     )
-                // ),
-
                 RaisedButton(
                   onPressed: createData,
                   child: Text('Ok Saya Siap Melakukan Video Call', style: TextStyle(color: Colors.white, fontSize: 20)),
                   color: Colors.orange,
                 ),
-
-
               ],
-            ),
-            // StreamBuilder<QuerySnapshot>(
-            //   stream: db.collection('form').snapshots(),
-            //   builder: (context, snapshot){
-            //     if (snapshot.hasData) {
-            //       return Column(children:snapshot.data.documents.map((doc)=> buildItem(doc)).toList());
-            //     } else {
-            //       return SizedBox();
-            //     }
-            //   }
-            // )
+            ) : Container()
           ],
         )
       // firestore end
@@ -1280,7 +1218,12 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
   void createData() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      await db.collection('form').doc('user').update({'name': '$firestoreName', 'nik': '$firestoreNik', 'address': '$firestoreAddress', 'dob': '$firestoreBirthdate', 'pob': '$firestoreBirthplace',
+      await db.collection('form').doc('user').update({
+        'name': '$firestoreName',
+        'nik': '$firestoreNik',
+        'address': '$firestoreAddress',
+        'dob': '$firestoreBirthdate',
+        'pob': '$firestoreBirthplace',
         'gender': '$firestoreGender',
         'rtrw': '$firestoreRtRw',
         'kecamatan': '$firestoreKecamatan',
@@ -1293,14 +1236,11 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
         'kabupatenkota': '$firestoreKabupatenKota',
         'kelurahandesa': '$firestoreKelurahanDesa',
         'nationality': '$firestoreNationality',
-        'mobile': '$firestoreMobilePhone', 'email': '$firestoreEmail'});
-      //DocumentReference ref = await db.collection('form').add({'name': '$firestoreName', 'nik': '$firestoreNik', 'address': '$firestoreAddress', 'birthdate': '$firestoreBirthdate', 'birthday': '$firestoreBirthday', 'mobilePhone': '$firestoreMobilePhone', 'email': '$firestoreEmail'});
-      //setState(() => firestoreId = ref.documentID);
-      //print (ref.documentID);
+        'mobile': '$firestoreMobilePhone',
+        'email': '$firestoreEmail'});
       Navigator.push(
           context,
           MaterialPageRoute(
-              //builder: (BuildContext context) => CallSample(host: 'demo.cloudwebrtc.com')));
               builder: (BuildContext context) => WebrtcRoom()));
     }
   }
@@ -1319,11 +1259,12 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             Icons.person,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input nama';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreName = value,
     );
   }
@@ -1332,17 +1273,19 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
     return TextFormField (
       maxLength: 16,
       controller: nikController,
+      keyboardType: TextInputType.number,
       decoration: new InputDecoration(
           hintText: 'NIK',
           icon: new Icon(
             Icons.credit_card,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty || value.length < 16) {
+          return 'Please input nik';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreNik = value,
     );
   }
@@ -1351,16 +1294,17 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
     return TextFormField (
       controller: addressController,
       decoration: new InputDecoration(
-          hintText: 'Alamat',
+          hintText: 'Address',
           icon: new Icon(
             Icons.home,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input alamat';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreAddress = value,
     );
   }
@@ -1369,16 +1313,17 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
     return TextFormField (
       controller: birthdateController,
       decoration: new InputDecoration(
-          hintText: 'Tanggal Lahir',
+          hintText: 'Date of Birth',
           icon: new Icon(
             Icons.calendar_today,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input tanggal lahir';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreBirthdate = value,
     );
   }
@@ -1392,11 +1337,12 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             Icons.location_city,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input tempat lahir';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreBirthplace = value,
     );
   }
@@ -1404,18 +1350,18 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
   TextFormField buildTextFormFieldGender(){
     return TextFormField (
       controller: genderController,
-      maxLength: 16,
       decoration: new InputDecoration(
           hintText: 'Jenis Kelamin',
           icon: new Icon(
             Icons.person,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input gender';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreGender = value,
     );
   }
@@ -1430,11 +1376,12 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             Icons.map,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input RT/RW';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreRtRw = value,
     );
   }
@@ -1449,11 +1396,12 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             Icons.map,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input Kecamatan';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreKecamatan = value,
     );
   }
@@ -1468,11 +1416,12 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             Icons.home_outlined,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input agama';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreReligion = value,
     );
   }
@@ -1487,11 +1436,11 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             Icons.home_outlined,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input status perkawinan';
+        }
+      },
       onSaved: (value) => firestoreMaritalStatus = value,
     );
   }
@@ -1506,11 +1455,12 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             Icons.location_city,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input pekerjaan';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreWorkfield = value,
     );
   }
@@ -1525,11 +1475,12 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             Icons.map,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input provinsi';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreProvince = value,
     );
   }
@@ -1544,11 +1495,12 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             Icons.calendar_today,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input tanggal berlaku';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreExpiry = value,
     );
   }
@@ -1563,11 +1515,12 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             Icons.account_box_rounded,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please gol. darah';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreBloodType = value,
     );
   }
@@ -1582,11 +1535,12 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             Icons.person,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input kabupaten/kota';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreKabupatenKota = value,
     );
   }
@@ -1601,11 +1555,12 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             Icons.location_city,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input kelurahan/desa';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreKelurahanDesa = value,
     );
   }
@@ -1621,11 +1576,12 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             Icons.credit_card,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please input kewarganegaraan';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreNationality = value,
     );
   }
@@ -1640,11 +1596,14 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             Icons.mail,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value){
+        isEmail = EmailValidator.validate(value);
+
+        if (value.isEmpty || !isEmail) {
+          return 'Please input a valid email address';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreEmail = value,
     );
   }
@@ -1652,17 +1611,19 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
   TextFormField buildTextFormFieldMobilePhone(){
     return TextFormField (
       controller:mobilePhoneController,
+      keyboardType: TextInputType.phone,
       decoration: new InputDecoration(
           hintText: 'Mobile Phone Number (e.g. 08xxxx)',
           icon: new Icon(
             Icons.phone_android,
             color: Colors.grey,
           )),
-      // validator: (value) {
-      //   if (value.isEmpty) {
-      //     return 'Please enter some text';
-      //   }
-      // },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please phone number';
+        }
+        return null;
+      },
       onSaved: (value) => firestoreMobilePhone = value,
     );
   }

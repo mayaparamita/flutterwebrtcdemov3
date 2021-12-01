@@ -138,7 +138,7 @@
 // }
 
 import 'package:flutter/material.dart';
-import '../../src/pages/splashscreen.dart';
+import 'pages/splashscreen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'pages/welcomePage.dart';
 

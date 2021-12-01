@@ -3,7 +3,6 @@ import '../../Widget/bezierContainer.dart';
 import 'loginPage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'ektpFormPage.dart';
-import '../nodeflux/screens/nodefluxOcrKtpPage0.dart';
 import '../nodeflux/screens/nodefluxOcrKtpPage.dart';
 
 
@@ -67,9 +66,7 @@ class _PrepPageState extends State<PrepPage> {
       InkWell(
           onTap: () {
             Navigator.push(
-                //context, MaterialPageRoute(builder: (context) => EktpFormPage()));;
-                context, MaterialPageRoute(builder: (context) => NodefluxOcrKtpPage()));;
-                //context, MaterialPageRoute(builder: (context) => NodefluxOcrKtp0()));;
+                context, MaterialPageRoute(builder: (context) => NodefluxOcrKtpPage()));
           },
           child:Container(
             width: MediaQuery.of(context).size.width,

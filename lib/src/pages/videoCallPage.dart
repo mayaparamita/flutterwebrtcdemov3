@@ -3,8 +3,6 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../call_sample/call_sample.dart';
-import '../call_sample/data_channel_sample.dart';
 import '../route_item.dart';
 
 void main() => runApp(new VideoCallPage());
@@ -76,12 +74,12 @@ class _VideoCallPageState extends State<VideoCallPage> {
       if (value != null) {
         if (value == DialogDemoAction.connect) {
           _prefs.setString('server', _server);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => _datachannel
-                      ? DataChannelSample(host: _server)
-                      : CallSample(host: _server)));
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (BuildContext context) => _datachannel
+          //             ? DataChannelSample(host: _server)
+          //             : CallSample(host: _server)));
         }
       }
     });

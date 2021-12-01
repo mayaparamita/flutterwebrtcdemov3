@@ -9,7 +9,6 @@ import 'package:path/path.dart' as path;
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../call_sample/call_sample.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -198,56 +197,30 @@ class _NodefluxOcrKtpPageState extends State<NodefluxOcrKtpPage> {
                     //builder: (BuildContext context) => CallSample(host: 'demo.cloudwebrtc.com')));
                     builder: (BuildContext context) => WebrtcRoom()));
           },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.symmetric(vertical: 15),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(
-                          color: Colors.grey.shade200,
-                          offset: Offset(2, 4),
-                          blurRadius: 5,
-                          spreadRadius: 2)
-                    ],
-                    gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-                child: Text(
-                  'Lakukan Video Call Sekarang',
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.symmetric(vertical: 15),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(
-                          color: Colors.grey.shade200,
-                          offset: Offset(2, 4),
-                          blurRadius: 5,
-                          spreadRadius: 2)
-                    ],
-                    gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-                child: Text(
-                  'Lakukan Video Call di Lain Waktu',
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-              )
-            ]
-          ),
-      );
+          child:
+
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.symmetric(vertical: 15),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: Colors.grey.shade200,
+                      offset: Offset(2, 4),
+                      blurRadius: 5,
+                      spreadRadius: 2)
+                ],
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [Color(0xfffbb448), Color(0xfff7892b)])),
+            child: Text(
+              'Saya siap melakukan video call',
+              style: TextStyle(fontSize: 20, color: Colors.white),
+            ),
+          ));
   }
 
   Widget _divider() {
@@ -1365,8 +1338,8 @@ class _NodefluxOcrKtpPageState extends State<NodefluxOcrKtpPage> {
                     SizedBox(height: 20),
                     (matchLivenessFeedback!="")?Text(matchLivenessFeedback,
                         style: new TextStyle(fontSize: 12.0, color: Colors.black)):Container(),
-                    (_ektpImage!=null && _nodefluxResult2Model!=null
-                        && (isLive!=null || isMatched!=null)
+                    (_ektpImage!=null && _nodefluxResult2Model!=null && _selfieImage != null
+                        //&& (isLive!=null || isMatched!=null)
                     )?RaisedButton(
                       onPressed: goToResultPage,
                       child: Text('Lanjutkan', style: TextStyle(color: Colors.white, fontSize: 20)),

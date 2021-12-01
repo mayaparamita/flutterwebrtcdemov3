@@ -8,7 +8,6 @@ import 'dart:io';
 import 'package:path/path.dart' as path;
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import '../call_sample/call_sample.dart';
 import 'congratulationPage.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -98,10 +97,10 @@ class _DisplayDataPageState extends State<DisplayDataPage> {
             // Navigator.push(
             //     context, MaterialPageRoute(builder: (context) => VideoCallPage()));;
 
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => CallSample(host: 'demo.cloudwebrtc.com')));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => CallSample(host: 'demo.cloudwebrtc.com')));
           },
           child:
 
@@ -906,10 +905,10 @@ class _DisplayDataPageState extends State<DisplayDataPage> {
       DocumentReference ref = await db.collection('form').add({'name': '$firestoreName', 'nik': '$firestoreNik', 'address': '$firestoreAddress', 'birthdate': '$firestoreBirthdate', 'birthday': '$firestoreBirthday', 'mobilePhone': '$firestoreMobilePhone', 'email': '$firestoreEmail'});
       setState(() => firestoreId = ref.id);
       print (ref.id);
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => CallSample(host: 'demo.cloudwebrtc.com')));
+      // Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //         builder: (BuildContext context) => CallSample(host: 'demo.cloudwebrtc.com')));
     }
   }
 
