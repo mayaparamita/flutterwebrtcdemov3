@@ -291,7 +291,9 @@ class _NodefluxOcrKtpPageState extends State<NodefluxOcrKtpPage> {
             shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(30.0)),
             color: Colors.lightBlue,
-            child: new Text('Ambil Foto Selfie',
+            child: new Text(
+                //'Ambil Foto Selfie',
+              'Take Selfie Photo',
                 style: new TextStyle(fontSize: 12.0, color: Colors.white)),
             //onPressed: () { navigateToPage('Login Face');}
             onPressed: () {
@@ -1074,7 +1076,9 @@ class _NodefluxOcrKtpPageState extends State<NodefluxOcrKtpPage> {
             shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(30.0)),
             color: Colors.lightBlue,
-            child: new Text('Ambil Foto eKTP',
+            child: new Text(
+                //'Ambil Foto eKTP',
+              'Take eKTP Photo',
                 style: new TextStyle(fontSize: 12.0, color: Colors.white)),
             //onPressed: () { navigateToPage('Login Face');}
             onPressed:  () {
@@ -1336,13 +1340,18 @@ class _NodefluxOcrKtpPageState extends State<NodefluxOcrKtpPage> {
                     SizedBox(height: 20),
                     (_ektpImage!=null && _nodefluxResult2Model!=null)?showUploadSelfieButton():Container(),
                     SizedBox(height: 20),
-                    (matchLivenessFeedback!="")?Text(matchLivenessFeedback,
+                    (matchLivenessFeedback!="")?
+                    Text(matchLivenessFeedback,
                         style: new TextStyle(fontSize: 12.0, color: Colors.black)):Container(),
-                    (_ektpImage!=null && _nodefluxResult2Model!=null && _selfieImage != null
+                    (_ektpImage!=null && _nodefluxResult2Model!=null
+                        && _selfieImage != null
                         //&& (isLive!=null || isMatched!=null)
                     )?RaisedButton(
                       onPressed: goToResultPage,
-                      child: Text('Lanjutkan', style: TextStyle(color: Colors.white, fontSize: 20)),
+                      child: Text(
+                          //'Lanjutkan',
+                          'Next',
+                          style: TextStyle(color: Colors.white, fontSize: 20)),
                       color: Colors.orange,
                     ):Container(),
 

@@ -2,10 +2,16 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
+import '../pages/displayDataPage.dart';
+import 'package:flutter/material.dart';
 
 typedef void StreamStateCallback(MediaStream stream);
 
 class WebrtcSignaling {
+  WebrtcSignaling({this.context});
+
+  final BuildContext context;
+
   Map<String, dynamic> configuration = {
     'iceServers': [
       {
@@ -228,7 +234,11 @@ class WebrtcSignaling {
 
     peerConnection?.onConnectionState = (RTCPeerConnectionState state) {
       print('Connection state change: $state');
-    };
+      if (state==RTCPeerConnectionState.RTCPeerConnectionStateDisconnected) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => DisplayDataPage()));
+      }
+  };
 
     peerConnection?.onSignalingState = (RTCSignalingState state) {
       print('Signaling state change: $state');

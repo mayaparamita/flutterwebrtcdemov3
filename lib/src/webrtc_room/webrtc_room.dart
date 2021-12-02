@@ -74,7 +74,7 @@ class _WebrtcRoomState extends State<WebrtcRoom> {
       ),
       body: Column(
         children: [
-          SizedBox(height: 8),
+          //SizedBox(height: 8),
           // Row(
           //   mainAxisAlignment: MainAxisAlignment.center,
           //   children: [
@@ -101,33 +101,88 @@ class _WebrtcRoomState extends State<WebrtcRoom> {
           //
           //   ],
           // ),
-
-
+          //START
+          // Expanded(
+          //   child:
+          //   Padding(
+          //     padding: const EdgeInsets.all(8.0),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         Expanded(
+          //             child:
+          //         RTCVideoView(_localRenderer, mirror: true)
+          //         ),
+          //         Expanded(child: RTCVideoView(_remoteRenderer)),
+          //       ],
+          //     ),
+          //
+          //   ),
+          // ),
+          // END
+          SizedBox(height: 178),
           Expanded(
-            child: Padding(
+            child:
+            Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(child: RTCVideoView(_localRenderer, mirror: true)),
-                      Text("Client Video")
-                    ]
+                  Expanded(
+                      child:RTCVideoView(_localRenderer, mirror: true),
                   ),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children:[
-                        Expanded(child: RTCVideoView(_remoteRenderer)),
-                        Text("Agent Video")
-                      ]
-                  ),
+                  Expanded(child: RTCVideoView(_remoteRenderer)),
                 ],
               ),
             ),
           ),
-          SizedBox(height: 8),
+
+
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Client Video                             "),
+                    Text("Agent Video")]
+              ),
+            ],
+          ),
+          //END
+          // Row(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       Text("Agent Video                               "),
+          //       Text("Client Video")
+          //     ]),
+
+
+          // Expanded(
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(8.0),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         Row(
+          //           mainAxisAlignment: MainAxisAlignment.center,
+          //           children: [
+          //             Expanded(child: RTCVideoView(_localRenderer, mirror: true)),
+          //             Text("Client Video")
+          //           ]
+          //         ),
+          //         Row(
+          //             mainAxisAlignment: MainAxisAlignment.center,
+          //             children:[
+          //               Expanded(child: RTCVideoView(_remoteRenderer)),
+          //               Text("Agent Video")
+          //             ]
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          SizedBox(height: 148),
           Row (
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

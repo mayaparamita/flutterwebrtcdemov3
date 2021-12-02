@@ -798,7 +798,9 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
             shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(30.0)),
             color: Colors.lightBlue,
-            child: new Text('Foto Selfie bersama eKTP',
+            child: new Text(
+                //'Foto Selfie bersama eKTP',
+              'Take Selfie Photo with eKTP',
                 style: new TextStyle(fontSize: 12.0, color: Colors.white)),
             //onPressed: () { navigateToPage('Login Face');}
             onPressed:  () {
@@ -1085,7 +1087,10 @@ class _NodefluxOcrKtpResultPageState extends State<NodefluxOcrKtpResultPage> {
               children: <Widget>[
                 RaisedButton(
                   onPressed: createData,
-                  child: Text('Ok Saya Siap Melakukan Video Call', style: TextStyle(color: Colors.white, fontSize: 20)),
+                  child: Text(
+                      //'Ok Saya Siap Melakukan Video Call',
+                      'OK, I am ready to have Video Call',
+                      style: TextStyle(color: Colors.white, fontSize: 20)),
                   color: Colors.orange,
                 ),
               ],

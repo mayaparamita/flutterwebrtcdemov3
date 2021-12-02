@@ -36,7 +36,8 @@ class _WelcomePageState extends State<WelcomePage> {
             ],
             color: Colors.white),
         child: Text(
-          'Buka Rekening Sekarang',
+          //'Buka Rekening Sekarang',
+          'Open Account Now',
           style: TextStyle(fontSize: 20, color: Color(0xfff7892b)),
         ),
       ),
@@ -156,14 +157,16 @@ class _WelcomePageState extends State<WelcomePage> {
                 height: 25,
               ),
               Text(
-                'Selamat datang di IST Bank Mobile. Kemudahan bertransaksi dalam genggaman Anda',
+                //'Selamat datang di IST Bank Mobile. Kemudahan bertransaksi dalam genggaman Anda',
+                'Welcome to IST Mobile Banking. Ease of transaction in your hand',
                 style: TextStyle(color: Colors.black, fontSize: 17), textAlign: TextAlign.center,
               ),
               SizedBox(
                 height: 80,
               ),
               Text(
-                'Apakah kamu sudah memiliki rekening IST Mobile?',
+                //'Apakah kamu sudah memiliki rekening IST Mobile?',
+                'Do you have IST Mobile Banking Account?',
                 style: TextStyle(color: Colors.white, fontSize: 17), textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -174,7 +177,8 @@ class _WelcomePageState extends State<WelcomePage> {
                 height: 50,
               ),
               Text(
-                'Belum memiliki rekening IST Mobile.\nMau buka rekening kamu sekarang juga?',
+                //'Belum memiliki rekening IST Mobile.\nMau buka rekening kamu sekarang juga?',
+                'I don\'t have IST Mobile Banking Account. \nWant to open account now?',
                 style: TextStyle(color: Colors.white, fontSize: 17), textAlign: TextAlign.center,
               ),
               SizedBox(

@@ -86,7 +86,8 @@ class _PrepPageState extends State<PrepPage> {
                     end: Alignment.centerRight,
                     colors: [Color(0xfffbb448), Color(0xfff7892b)])),
             child: Text(
-              'OK, Semua sudah siap',
+         //     'OK, Semua sudah siap',
+              'OK, I am ready',
               style: TextStyle(fontSize: 20, color: Colors.white),
             ),
           )
@@ -187,7 +188,8 @@ class _PrepPageState extends State<PrepPage> {
                       height: 50,
                     ),
                     Text(
-                      'Hai, buka rekening IST Bank kamu sekarang yuk',
+                      //'Hai, buka rekening IST Bank kamu sekarang yuk',
+                      'Let\'s follow these steps to open IST Bank Account',
                       style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
                     ),
                     //_emailPasswordWidget(),
@@ -195,14 +197,15 @@ class _PrepPageState extends State<PrepPage> {
                       height: 20,
                     ),
                     Text(
-                      'Sebelum mulai kita persiapkan hal ini yuk:',
+                      //'Sebelum mulai kita persiapkan hal ini yuk:',
+                      'Please prepare these following items to begin:',
                       style: TextStyle(color: Colors.black, fontSize: 17), textAlign: TextAlign.left,
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     Text(
-                      '\u2022 eKTP dan NPWP',
+                      '\u2022 eKTP and NPWP',
                       style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
                     ),
                     //_emailPasswordWidget(),
@@ -210,7 +213,8 @@ class _PrepPageState extends State<PrepPage> {
                       height: 20,
                     ),
                     Text(
-                      '\u2022 Nomor HP dan Email yang aktif',
+                      //'\u2022 Nomor HP dan Email yang aktif',
+                      '\u2022 Active Mobile Phone Number and Email',
                       style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
                     ),
                     //_emailPasswordWidget(),
@@ -218,17 +222,27 @@ class _PrepPageState extends State<PrepPage> {
                       height: 20,
                     ),
                     Text(
-                      '\u2022 Situasi kondusif untuk mengambil foto Selfie',
+                      //'\u2022 Situasi kondusif untuk mengambil foto Selfie',
+                      '\u2022 Appropriate situation to take selfie',
                       style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     Text(
-                      '\u2022 Perangkat dan koneksi internet untuk video call',
+                      //'\u2022 Perangkat dan koneksi internet untuk video call',
+                      '\u2022 Video call ready device',
                       style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
                     ),
                     //_emailPasswordWidget(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      //'\u2022 Perangkat dan koneksi internet untuk video call',
+                      '\u2022 Sufficient internet connection to have video call',
+                      style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
+                    ),
                     SizedBox(
                       height: 50,
                     ),
