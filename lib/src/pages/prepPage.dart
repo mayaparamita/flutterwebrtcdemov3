@@ -179,75 +179,87 @@ class _PrepPageState extends State<PrepPage> {
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  //crossAxisAlignment: CrossAxisAlignment.center,
+                  //mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: height * .1),
-                    _title(),
-                    SizedBox(
-                      height: 50,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget> [
+                        SizedBox(height: 80),
+                        _title()
+                      ]
                     ),
-                    Text(
-                      //'Hai, buka rekening IST Bank kamu sekarang yuk',
-                      'Let\'s follow these steps to open IST Bank Account',
-                      style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
-                    ),
-                    //_emailPasswordWidget(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      //'Sebelum mulai kita persiapkan hal ini yuk:',
-                      'Please prepare these following items to begin:',
-                      style: TextStyle(color: Colors.black, fontSize: 17), textAlign: TextAlign.left,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      '\u2022 eKTP and NPWP',
-                      style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
-                    ),
-                    //_emailPasswordWidget(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      //'\u2022 Nomor HP dan Email yang aktif',
-                      '\u2022 Active Mobile Phone Number and Email',
-                      style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
-                    ),
-                    //_emailPasswordWidget(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      //'\u2022 Situasi kondusif untuk mengambil foto Selfie',
-                      '\u2022 Appropriate situation to take selfie',
-                      style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      //'\u2022 Perangkat dan koneksi internet untuk video call',
-                      '\u2022 Video call ready device',
-                      style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
-                    ),
-                    //_emailPasswordWidget(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      //'\u2022 Perangkat dan koneksi internet untuk video call',
-                      '\u2022 Sufficient internet connection to have video call',
-                      style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    _submitButton(),
-                    SizedBox(height: height * .14),
+                    Column(crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget> [
+                      SizedBox(height: height * .03),
+
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Text(
+                        //'Hai, buka rekening IST Bank kamu sekarang yuk',
+                        'Let\'s follow these steps to open IST Bank Account',
+                        style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
+                      ),
+                      //_emailPasswordWidget(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        //'Sebelum mulai kita persiapkan hal ini yuk:',
+                        'Please prepare these following items to begin:',
+                        style: TextStyle(color: Colors.black, fontSize: 17), textAlign: TextAlign.left,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        '\u2022 eKTP and NPWP',
+                        style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
+                      ),
+                      //_emailPasswordWidget(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        //'\u2022 Nomor HP dan Email yang aktif',
+                        '\u2022 Active Mobile Phone Number and Email',
+                        style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
+                      ),
+                      //_emailPasswordWidget(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        //'\u2022 Situasi kondusif untuk mengambil foto Selfie',
+                        '\u2022 Appropriate situation to take selfie',
+                        style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        //'\u2022 Perangkat dan koneksi internet untuk video call',
+                        '\u2022 Video call ready device',
+                        style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
+                      ),
+                      //_emailPasswordWidget(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        //'\u2022 Perangkat dan koneksi internet untuk video call',
+                        '\u2022 Sufficient internet connection to have video call',
+                        style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
+                      ),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      _submitButton(),
+                      SizedBox(height: height * .14),
+                    ]),
+
                     //_loginAccountLabel(),
                   ],
                 ),
